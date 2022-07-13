@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tageskarte Optionen</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .title {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .container {
+            margin-top: 100px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .session {
+            margin-top: 50px;
+        }
+        .plz {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1 class="title">Option Tageskarte</h1>
+
+<div class="container">
+
+    <form action="#" th:action="@{/dayCard}" th:object="${ticket}" method="post">
+        <h4>Choose your Transport Type: </h4>
+        <div th:each="checkValue : ${transportValues}" class="form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" name="ticketType" type="checkbox" th:text="${checkValue}" th:field="*{transport}"
+                       th:value="${checkValue}">
+            </label>
+        </div>
+        <div>
+            <div class="form-group plz">
+                <label>Postleitzahl:</label>
+                <input type="text" class="form-control" placeholder="Enter PLZ" th:field="*{plz}">
+                <small id="emailHelp" class="form-text text-muted">Chance auf Rabattaktionen</small>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <div class="session">
+        <h4>Aktuelle Wünsche: </h4>
+        <h5 th:text="'Ticket Typ: ' +${ticket.ticketType}"></h5>
+        <h5 th:text="'Transport Wünsche: ' +${ticket.transport}"></h5>
+        <h5 th:text="'PLZ: ' +${ticket.plz}"></h5>
+    </div>
+</div>
+</body>
+</html>

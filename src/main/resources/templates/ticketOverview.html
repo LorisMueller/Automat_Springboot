@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dein Ticket</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            height: 100%;
+            width: 100%;
+        }
+        .title {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .container {
+            width: 100%;
+            height: 100%;
+            margin-top: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .myTicket {
+            width: 50vw;
+            height: 50vh;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+        }
+        .myTicket_title {
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .myTicket_title h2 {
+            font-weight: 500;
+            text-underline: black;
+            margin-bottom: 20px;
+        }
+        .myTicket_infos{
+            width: 100%;
+            margin-left: 50px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        .buttons a {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1 class="title">Dein Ticket</h1>
+<div class="container">
+
+    <div class="myTicket">
+        <div class="myTicket_title">
+            <h2 th:text="${ticket.ticketType}"></h2>
+        </div>
+        <div class="myTicket_infos">
+            <h4 th:text="'Von: '+${ticket.Start}"></h4>
+            <h4 th:text="'Bis: '+${ticket.Goal}"></h4>
+            <h4 th:text="'Fahrtmöglichkeiten: '+${ticket.transport}"></h4>
+            <h4 th:text="'Postleitzahl: '+${ticket.plz}"></h4>
+        </div>
+
+    </div>
+
+    <div class="buttons">
+        <a href="/ticketType"><button type="button" class="btn btn-secondary">Änderungen vornehmen</button></a>
+        <a href="/"><button type="button" class="btn btn-primary">Ticket kaufen</button></a>
+    </div>
+
+</div>
+
+
+</body>
+</html>
